@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace MarsRoverGroundControl
+namespace MarsRover
 {
     public class MarsRoverGroundControl
     {
@@ -23,9 +23,5 @@ namespace MarsRoverGroundControl
             }
         }
 
-        public void Main()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
