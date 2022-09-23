@@ -7,25 +7,70 @@ namespace MarsRover
 {
     public class MarsRover
     {
-        public int[] coordinates
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        private int[]? Coordinates { get; set; }
 
-        public char heading
-        {
-            get => default;
-            set
-            {
-            }
-        }
+        private char Heading { get; set; }
 
-        public char Move()
+        public string Move(string movement)
         {
-            throw new System.NotImplementedException();
+            foreach (char move in movement)
+            {
+                switch (move)
+                {
+                    case 'L':
+                        switch (Heading)
+                        {
+                            case 'N':
+                                Heading = 'W';
+                                break;
+                            case 'E':
+                                Heading = 'N';
+                                break;
+                            case 'S':
+                                Heading = 'E';
+                                break;
+                            case 'W':
+                                Heading = 'S';
+                                break;
+                        }
+                        break;
+                    case 'R':
+                        switch (Heading)
+                        {
+                            case 'N':
+                                Heading = 'E';
+                                break;
+                            case 'E':
+                                Heading = 'S';
+                                break;
+                            case 'S':
+                                Heading = 'W';
+                                break;
+                            case 'W':
+                                Heading = 'N';
+                                break;
+                        }
+                        break;
+                    case 'M':
+                        switch (Heading)
+                        {
+                            case 'N':
+                                Coordinates[1]++;
+                                break;
+                            case 'E':
+                                Coordinates[0]++;
+                                break;
+                            case 'S':
+                                Coordinates[1]--;
+                                break;
+                            case 'W':
+                                Coordinates[0]--;
+                                break;
+                        }
+                        break;
+                }
+            }
+            return "";
         }
 
         public char Turn()
@@ -33,9 +78,16 @@ namespace MarsRover
             throw new System.NotImplementedException();
         }
 
-        public char[] Deploy()
+        public object[] Deploy(int rX, int rY, char rH)
         {
-            throw new System.NotImplementedException();
+            Coordinates = new int[2] { rX, rY };
+            Heading = rH;
+            return new object[] { Coordinates[0], Coordinates[1], Heading };
+        }
+
+        public object[] Detect()
+        {
+            return new object[] { Coordinates[0], Coordinates[1], Heading };
         }
     }
 }

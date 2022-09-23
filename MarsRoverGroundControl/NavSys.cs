@@ -7,22 +7,31 @@ namespace MarsRover
 {
     public class NavSys
     {
-        public int[] plateauBoundry
+        private const int PLATEAU_ORIGIN_INDEX_X = 0;
+        private const int PLATEAU_ORIGIN_INDEX_Y = 1;
+        private const int PLATEAU_BORDER_INDEX_X = 2;
+        private const int PLATEAU_BORDER_INDEX_Y = 3;
+        private const int PLATEAU_ORIGIN_X = 0;
+        private const int PLATEAU_ORIGIN_Y = 0;
+
+        private int[]? PlateauBoundry { get; set; }
+
+        public int[] SetBoundry(int bX, int bY)
         {
-            get => default;
-            set
-            {
-            }
+            PlateauBoundry = new int[4] { PLATEAU_ORIGIN_X, PLATEAU_ORIGIN_Y, bX, bY };
+            return PlateauBoundry;
         }
 
-        public int[] setBoundry()
+        public int[] GetBoundry()
         {
-            throw new System.NotImplementedException();
+            return PlateauBoundry;
         }
 
-        public int[] getBoundry()
+        public int[]? VehicleLocation { get; set; }
+
+        public int[] UpdateVehLoc(int oldX, int oldY, int newX, int newY)
         {
-            throw new System.NotImplementedException();
+            return VehicleLocation;
         }
     }
 }
