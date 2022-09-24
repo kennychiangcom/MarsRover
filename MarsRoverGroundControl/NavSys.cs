@@ -7,10 +7,6 @@ namespace MarsRover
 {
     public class NavSys
     {
-        private const int PLATEAU_ORIGIN_INDEX_X = 0;
-        private const int PLATEAU_ORIGIN_INDEX_Y = 1;
-        private const int PLATEAU_BORDER_INDEX_X = 2;
-        private const int PLATEAU_BORDER_INDEX_Y = 3;
         private const int PLATEAU_ORIGIN_X = 0;
         private const int PLATEAU_ORIGIN_Y = 0;
 
@@ -22,7 +18,7 @@ namespace MarsRover
             return PlateauBoundry;
         }
 
-        public int[] GetBoundry()
+        public int[] GetBoundary()
         {
             return PlateauBoundry;
         }

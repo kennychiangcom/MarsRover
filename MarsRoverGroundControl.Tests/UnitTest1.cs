@@ -23,7 +23,7 @@ namespace MarsRover.Tests
 
         private string[] RunMainAndGetConsoleOutput()
         {
-            Program.Main(default);
+            MarsRoverGroundControl.Main(default);
             return _ConsoleOutput.ToString().Split("\r\n");
         }
 
@@ -49,7 +49,7 @@ namespace MarsRover.Tests
         {
             var _NavSys = new NavSys();
             _NavSys.SetBoundry(5, 5);
-            int[] testboundary = _NavSys.GetBoundry();
+            int[] testboundary = _NavSys.GetBoundary();
             int[] expectedBoundary = new int[] { 0, 0, 5, 5 };
             Assert.That(testboundary, Is.EqualTo(expectedBoundary));
         }
@@ -64,15 +64,32 @@ namespace MarsRover.Tests
             Assert.That(testrover, Is.EqualTo(expectedRover));
         }
 
-        [Test]
-        public void Test_Move_Rover()
+        [TestCase(5, 5, 1, 2, 'N', "LMLMLMLMM", 1, 3, 'N')]
+        [TestCase(5, 5, 1, 2, 'N', "RMRMRMRMM", 1, 3, 'N')]
+        [TestCase(5, 5, 1, 2, 'N', "LMMLMMMLMLMMM", 1, 3, 'N')]
+        [TestCase(5, 5, 1, 2, 'N', "RMMLMMMLMLMMMRMRM", 1, 3, 'N')]
+        [TestCase(5, 5, 1, 2, 'N', "MMMRMMMM", 5, 5, 'E')]
+        public void Test_Move_Rover_Within_Boundary(int xBT, int yBT, int xRT, int yRT, char hRT, string RoverMovements, int xRE, int yRE, char hRE)
         {
             var _MarsRover = new MarsRover();
-            _MarsRover.Deploy(1, 2, 'N');
-            _MarsRover.Move("LMLMLMLMM");
+            _MarsRover.SetBoundry(xBT, yBT);
+            _MarsRover.Deploy(xRT, yRT, hRT);
+            _MarsRover.MoveandTurn(RoverMovements);
             object[] testrover = _MarsRover.Detect();
-            object[] expectedRover = new object[] { 1, 3, 'N' };
-            Assert.That(testrover, Is.EqualTo(expectedRover));
+            Assert.That(testrover, Is.EqualTo(new object[] { xRE, yRE, hRE }));
+        }
+
+        [TestCase(5, 5, 1, 2, 'N', "MMMMRMMMMMRMMMRMMMMRM", 1, 3, 'N')]
+        [TestCase(5, 5, 1, 2, 'N', "LLMMMMMLMMMMMMLMMLMMMMRM", 1, 3, 'N')]
+        [TestCase(5, 5, 1, 2, 'N', "MMMMRMMMMM", 5, 5, 'E')]
+        public void Test_Move_Rover_Out_Of_Boundary(int xBT, int yBT, int xRT, int yRT, char hRT, string RoverMovements, int xRE, int yRE, char hRE)
+        {
+            var _MarsRover = new MarsRover();
+            _MarsRover.SetBoundry(xBT, yBT);
+            _MarsRover.Deploy(xRT, yRT, hRT);
+            _MarsRover.MoveandTurn(RoverMovements);
+            object[] testrover = _MarsRover.Detect();
+            Assert.That(testrover, Is.EqualTo(new object[] { xRE, yRE, hRE }));
         }
     }
 }

@@ -10,7 +10,7 @@ namespace MarsRover
 {
     public class MarsRoverGroundControl
     {
-        public string commandIn
+        public string CommandIn
         {
             get => default;
             set
@@ -18,7 +18,7 @@ namespace MarsRover
             }
         }
 
-        public string telemetryOut
+        public string TelemetryOut
         {
             get => default;
             set
@@ -26,10 +26,6 @@ namespace MarsRover
             }
         }
 
-    }
-
-    internal class Program
-    {
         public static void Main(string[] args)
         {
             bool exitCode = false;
@@ -38,7 +34,6 @@ namespace MarsRover
             Regex regPlateau = new Regex(@"^\d+\s\d+$");
             Regex regDeploy = new Regex(@"^\d+\s\d+\s[NESW]{1}$");
             Regex regMovement = new Regex(@"^[LMR]{1,}$");
-            var _NavSys = new NavSys();
             var _MarsRover = new MarsRover();
             while (!exitCode)
             {
@@ -49,8 +44,8 @@ namespace MarsRover
                     var pCoord = cmdIn.Split(" ", StringSplitOptions.None);
                     int.TryParse(pCoord[0], out plateauCoord[0]);
                     int.TryParse(pCoord[1], out plateauCoord[1]);
-                    _NavSys.SetBoundry(plateauCoord[0], plateauCoord[1]);
-                    Console.WriteLine($"Plateau Boundary at {_NavSys.GetBoundry()[0]}, {_NavSys.GetBoundry()[1]}");
+                    _MarsRover.SetBoundry(plateauCoord[0], plateauCoord[1]);
+                    Console.WriteLine($"Plateau Boundary at {_MarsRover.GetBoundary()[0]}, {_MarsRover.GetBoundary()[1]}");
                 }
                 else if (regDeploy.IsMatch(cmdIn))
                 {
@@ -64,7 +59,7 @@ namespace MarsRover
                 }
                 else if (regMovement.IsMatch(cmdIn))
                 {
-                    _MarsRover.Move(cmdIn);
+                    _MarsRover.MoveandTurn(cmdIn);
                     Console.WriteLine($"{_MarsRover.Detect()[0]} {_MarsRover.Detect()[1]} {_MarsRover.Detect()[2]}");
                     exitCode = true;
                 }

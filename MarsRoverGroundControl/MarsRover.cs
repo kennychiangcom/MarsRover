@@ -5,13 +5,14 @@ using System.Text;
 
 namespace MarsRover
 {
-    public class MarsRover
+    public class MarsRover : NavSys
     {
         private int[]? Coordinates { get; set; }
 
         private char Heading { get; set; }
+        private int[]? Myboundary { get; set; }
 
-        public string Move(string movement)
+        public string MoveandTurn(string movement)
         {
             foreach (char move in movement)
             {
@@ -52,30 +53,26 @@ namespace MarsRover
                         }
                         break;
                     case 'M':
+                        Myboundary = GetBoundary();
                         switch (Heading)
                         {
                             case 'N':
-                                Coordinates[1]++;
+                                if (Myboundary[3] >= Coordinates[1] + 1) Coordinates[1]++;
                                 break;
                             case 'E':
-                                Coordinates[0]++;
+                                if (Myboundary[2] >= Coordinates[0] + 1) Coordinates[0]++;
                                 break;
                             case 'S':
-                                Coordinates[1]--;
+                                if (Myboundary[1] <= Coordinates[1] - 1) Coordinates[1]--;
                                 break;
                             case 'W':
-                                Coordinates[0]--;
+                                if (Myboundary[0] <= Coordinates[0] - 1) Coordinates[0]--;
                                 break;
                         }
                         break;
                 }
             }
             return "";
-        }
-
-        public char Turn()
-        {
-            throw new System.NotImplementedException();
         }
 
         public object[] Deploy(int rX, int rY, char rH)
