@@ -7,10 +7,16 @@ namespace MarsRover
 {
     public class MarsRover : NavSys
     {
-        private int[]? Coordinates { get; set; }
+        public int[]? Coordinates { get; private set; }
+        public char Heading { get; private set; }
+        public int[]? Myboundary { get; private set; }
 
-        private char Heading { get; set; }
-        private int[]? Myboundary { get; set; }
+        public object[] Deploy(int rX, int rY, char rH)
+        {
+            Coordinates = new int[2] { rX, rY };
+            Heading = rH;
+            return new object[] { Coordinates[0], Coordinates[1], Heading };
+        }
 
         public string MoveandTurn(string movement)
         {
@@ -73,13 +79,6 @@ namespace MarsRover
                 }
             }
             return "";
-        }
-
-        public object[] Deploy(int rX, int rY, char rH)
-        {
-            Coordinates = new int[2] { rX, rY };
-            Heading = rH;
-            return new object[] { Coordinates[0], Coordinates[1], Heading };
         }
 
         public object[] Detect()

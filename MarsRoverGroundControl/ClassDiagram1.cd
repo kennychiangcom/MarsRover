@@ -1,29 +1,25 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="MarsRover.MarsRoverGroundControl">
-    <Position X="7" Y="2.5" Width="2" />
+    <Position X="7" Y="0.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AgAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAICAAAAAAAABAAAAAA=</HashCode>
       <FileName>MarsRoverGroundControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MarsRover.MarsRover">
-    <Position X="4.25" Y="2.5" Width="2" />
+    <Position X="5.75" Y="3" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAQAAIAAAAAAAAAABIAAAAAAAAAAAACAAAEA=</HashCode>
+      <HashCode>AAAAQAAAAQAAIAAAAAAAAAABIAAAAAAAAAAAACAAAAA=</HashCode>
       <FileName>MarsRover.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MarsRover.NavSys">
-    <Position X="9.75" Y="2.5" Width="2" />
+    <Position X="8.5" Y="3" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAADAAAAABAAAEAAAAAAAAEAAAAAAAAAAAABAAAAEA=</HashCode>
       <FileName>NavSys.cs</FileName>
     </TypeIdentifier>
-  </Class>
-  <Class Name="System.Object" Collapsed="true">
-    <Position X="8.25" Y="1.25" Width="1.5" />
-    <TypeIdentifier />
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
