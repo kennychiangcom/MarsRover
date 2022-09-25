@@ -23,6 +23,6 @@ Commands are described as below:
 ```
 LMLMLMLLM
 ```
--When an empty command is entered, the current Mars Rover will be retreated, or, if all Mars Rovers within that plateau are retreated, the plateau will be let alone.
+- When an empty command is entered, the current Mars Rover will be retreated, or, if all Mars Rovers within that plateau are retreated, the plateau will be let alone.
 
 The development process is following TDD practice, which is first build a set of classes and methods that provides the simplest data for basic testing requirements, then build some critical testing criteria following AAA practice and setup expected results. With these first few test codes a practice called Red/Green/Refactor (RGR) will be carried out to keep writing and testing codes and loop, until the system is reasonably complete.
