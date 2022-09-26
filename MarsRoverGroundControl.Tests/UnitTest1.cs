@@ -38,10 +38,19 @@ namespace MarsRover.Tests
         [Test]
         public void Test_Console()
         {
-            SetupUserResponses("5 5", "1 2 N", "LMLMLMLMM");
+            SetupUserResponses("5 5", "1 2 N", "LMLMLMLMM", "", "", "");
             var expectedPrompt = "1 3 N";
             var outputLines = RunMainAndGetConsoleOutput();
             Assert.That(outputLines[2], Is.EqualTo(expectedPrompt));
+        }
+
+        [Test]
+        public void Test_Console_Multi_Rover_No_Path_Conflict()
+        {
+            SetupUserResponses("5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM", "", "", "", "");
+            var expectedPrompt = "5 1 E";
+            var outputLines = RunMainAndGetConsoleOutput();
+            Assert.That(outputLines[4], Is.EqualTo(expectedPrompt));
         }
 
         [Test]
@@ -71,9 +80,11 @@ namespace MarsRover.Tests
         [TestCase(5, 5, 1, 2, 'N', "MMMRMMMM", 5, 5, 'E')]
         public void Test_Move_Rover_Within_Boundary(int xBT, int yBT, int xRT, int yRT, char hRT, string RoverMovements, int xRE, int yRE, char hRE)
         {
+            var _NavSys = new NavSys();
+            _NavSys.SetBoundry(xBT, yBT);
             var _MarsRover = new MarsRover();
-            _MarsRover.SetBoundry(xBT, yBT);
             _MarsRover.Deploy(xRT, yRT, hRT);
+            _MarsRover.Myboundary = _NavSys.GetBoundary();
             _MarsRover.MoveandTurn(RoverMovements);
             object[] testrover = _MarsRover.Detect();
             Assert.That(testrover, Is.EqualTo(new object[] { xRE, yRE, hRE }));
@@ -84,9 +95,11 @@ namespace MarsRover.Tests
         [TestCase(5, 5, 1, 2, 'N', "MMMMRMMMMM", 5, 5, 'E')]
         public void Test_Move_Rover_Out_Of_Boundary(int xBT, int yBT, int xRT, int yRT, char hRT, string RoverMovements, int xRE, int yRE, char hRE)
         {
+            var _NavSys = new NavSys();
+            _NavSys.SetBoundry(xBT, yBT);
             var _MarsRover = new MarsRover();
-            _MarsRover.SetBoundry(xBT, yBT);
             _MarsRover.Deploy(xRT, yRT, hRT);
+            _MarsRover.Myboundary = _NavSys.GetBoundary();
             _MarsRover.MoveandTurn(RoverMovements);
             object[] testrover = _MarsRover.Detect();
             Assert.That(testrover, Is.EqualTo(new object[] { xRE, yRE, hRE }));

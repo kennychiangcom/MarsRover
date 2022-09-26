@@ -7,15 +7,17 @@ namespace MarsRover
 {
     public class MarsRover : NavSys
     {
+        private const int X_AXIS = 0;
+        private const int Y_AXIS = 1;
         public int[]? Coordinates { get; private set; }
         public char Heading { get; private set; }
-        public int[]? Myboundary { get; private set; }
+        public int[]? Myboundary { get; set; }
 
         public object[] Deploy(int rX, int rY, char rH)
         {
             Coordinates = new int[2] { rX, rY };
             Heading = rH;
-            return new object[] { Coordinates[0], Coordinates[1], Heading };
+            return new object[] { Coordinates[X_AXIS], Coordinates[Y_AXIS], Heading };
         }
 
         public string MoveandTurn(string movement)
@@ -59,20 +61,20 @@ namespace MarsRover
                         }
                         break;
                     case 'M':
-                        Myboundary = GetBoundary();
+                        //Myboundary = GetBoundary();
                         switch (Heading)
                         {
                             case 'N':
-                                if (Myboundary[3] >= Coordinates[1] + 1) Coordinates[1]++;
+                                if (Myboundary[3] >= Coordinates[Y_AXIS] + 1) Coordinates[Y_AXIS]++;
                                 break;
                             case 'E':
-                                if (Myboundary[2] >= Coordinates[0] + 1) Coordinates[0]++;
+                                if (Myboundary[2] >= Coordinates[X_AXIS] + 1) Coordinates[X_AXIS]++;
                                 break;
                             case 'S':
-                                if (Myboundary[1] <= Coordinates[1] - 1) Coordinates[1]--;
+                                if (Myboundary[1] <= Coordinates[Y_AXIS] - 1) Coordinates[Y_AXIS]--;
                                 break;
                             case 'W':
-                                if (Myboundary[0] <= Coordinates[0] - 1) Coordinates[0]--;
+                                if (Myboundary[0] <= Coordinates[X_AXIS] - 1) Coordinates[X_AXIS]--;
                                 break;
                         }
                         break;
@@ -83,7 +85,7 @@ namespace MarsRover
 
         public object[] Detect()
         {
-            return new object[] { Coordinates[0], Coordinates[1], Heading };
+            return new object[] { Coordinates[X_AXIS], Coordinates[Y_AXIS], Heading };
         }
     }
 }
