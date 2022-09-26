@@ -18,14 +18,14 @@ namespace MarsRover
             return PlateauBoundry;
         }
 
-        public int[] GetBoundary()
+        public int[]? GetBoundary()
         {
             return PlateauBoundry;
         }
 
         public int[]? VehicleLocation { get; set; }
 
-        public int[] UpdateVehLoc(int oldX, int oldY, int newX, int newY)
+        public int[]? UpdateVehLoc(int oldX, int oldY, int newX, int newY)
         {
             return VehicleLocation;
         }

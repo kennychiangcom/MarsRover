@@ -9,13 +9,18 @@ namespace MarsRover
     {
         private const int X_AXIS = 0;
         private const int Y_AXIS = 1;
+        private const int NO_OF_AXIS = 2;
+        private const int ORIGIN_X_AXIS = 0;
+        private const int ORIGIN_Y_AXIS = 1;
+        private const int BOUNDARY_X_AXIS = 2;
+        private const int BOUNDARY_Y_AXIS = 3;
         public int[]? Coordinates { get; private set; }
         public char Heading { get; private set; }
         public int[]? Myboundary { get; set; }
 
         public object[] Deploy(int rX, int rY, char rH)
         {
-            Coordinates = new int[2] { rX, rY };
+            Coordinates = new int[NO_OF_AXIS] { rX, rY };
             Heading = rH;
             return new object[] { Coordinates[X_AXIS], Coordinates[Y_AXIS], Heading };
         }
@@ -61,20 +66,19 @@ namespace MarsRover
                         }
                         break;
                     case 'M':
-                        //Myboundary = GetBoundary();
                         switch (Heading)
                         {
                             case 'N':
-                                if (Myboundary[3] >= Coordinates[Y_AXIS] + 1) Coordinates[Y_AXIS]++;
+                                if (Myboundary[BOUNDARY_Y_AXIS] >= Coordinates[Y_AXIS] + 1) Coordinates[Y_AXIS]++;
                                 break;
                             case 'E':
-                                if (Myboundary[2] >= Coordinates[X_AXIS] + 1) Coordinates[X_AXIS]++;
+                                if (Myboundary[BOUNDARY_X_AXIS] >= Coordinates[X_AXIS] + 1) Coordinates[X_AXIS]++;
                                 break;
                             case 'S':
-                                if (Myboundary[1] <= Coordinates[Y_AXIS] - 1) Coordinates[Y_AXIS]--;
+                                if (Myboundary[ORIGIN_Y_AXIS] <= Coordinates[Y_AXIS] - 1) Coordinates[Y_AXIS]--;
                                 break;
                             case 'W':
-                                if (Myboundary[0] <= Coordinates[X_AXIS] - 1) Coordinates[X_AXIS]--;
+                                if (Myboundary[ORIGIN_X_AXIS] <= Coordinates[X_AXIS] - 1) Coordinates[X_AXIS]--;
                                 break;
                         }
                         break;

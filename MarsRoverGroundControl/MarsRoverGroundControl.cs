@@ -14,6 +14,10 @@ namespace MarsRover
         private const int Y_AXIS = 1;
         private const int HEADING = 2;
         private const int NO_OF_AXIS = 2;
+        private const int BOUNDARY_X_AXIS = 2;
+        private const int BOUNDARY_Y_AXIS = 3;
+        private const int NO_ITEM = -1;
+        private const string PARAM_SEPARATOR = " ";
         public string CommandIn { get; set; }
 
         public string TelemetryOut { get; set; }
@@ -26,9 +30,9 @@ namespace MarsRover
 
             MarsRoverGroundControl GC = new MarsRoverGroundControl();
             List<MarsRover> _MarsRovers = new();
-            int _MarsRoverCount = -1;
+            int _MarsRoverCount = NO_ITEM;
             List<NavSys> _NavSys = new();
-            int _NavSysCount = -1;
+            int _NavSysCount = NO_ITEM;
 
             Regex regPlateau = new(@"^\d+\s\d+$");
             Regex regRoverDeploy = new(@"^\d+\s\d+\s[NESW]{1}$");
@@ -39,19 +43,19 @@ namespace MarsRover
                 if (regPlateau.IsMatch(GC.CommandIn))
                 {
                     //determine if a valid plateau boundary is entered
-                    var pCoord = GC.CommandIn.Split(" ", StringSplitOptions.None);
+                    var pCoord = GC.CommandIn.Split(PARAM_SEPARATOR, StringSplitOptions.None);
                     int.TryParse(pCoord[X_AXIS], out plateauCoord[X_AXIS]);
                     int.TryParse(pCoord[Y_AXIS], out plateauCoord[Y_AXIS]);
 
                     _NavSys.Add(new MarsRover());
                     _NavSysCount++;
                     _NavSys[_NavSysCount].SetBoundry(plateauCoord[X_AXIS], plateauCoord[Y_AXIS]);
-                    Console.WriteLine($"Plateau Boundary at {_NavSys[_NavSysCount].GetBoundary()[X_AXIS]}, {_NavSys[_NavSysCount].GetBoundary()[Y_AXIS]}");
+                    Console.WriteLine($"Plateau Boundary at {_NavSys[_NavSysCount].GetBoundary()[BOUNDARY_X_AXIS]}, {_NavSys[_NavSysCount].GetBoundary()[BOUNDARY_Y_AXIS]}");
                 }
                 else if (regRoverDeploy.IsMatch(GC.CommandIn))
                 {
                     //determine if a valid coordinate and heading is entered
-                    var rCoord = GC.CommandIn.Split(" ", StringSplitOptions.None);
+                    var rCoord = GC.CommandIn.Split(PARAM_SEPARATOR, StringSplitOptions.None);
                     int.TryParse(rCoord[X_AXIS], out roverAttitude[X_AXIS]);
                     int.TryParse(rCoord[Y_AXIS], out roverAttitude[Y_AXIS]);
 
@@ -84,8 +88,16 @@ namespace MarsRover
                 }
                 else if (GC.CommandIn == "")
                 {
-                    if (_MarsRovers.Count > 0) _MarsRovers.RemoveAt(_MarsRoverCount--);
-                    else if (_NavSys.Count > 0) _NavSys.RemoveAt(_NavSysCount--);
+                    if (_MarsRovers.Count > 0)
+                    {
+                        Console.WriteLine($"Mars Rover at {_MarsRovers[_MarsRoverCount].Detect()[X_AXIS]}, {_MarsRovers[_MarsRoverCount].Detect()[Y_AXIS]} is now being retreated.");
+                        _MarsRovers.RemoveAt(_MarsRoverCount--);
+                    }
+                    else if (_NavSys.Count > 0)
+                    {
+                        Console.WriteLine($"Plateau with Boundary at {_NavSys[_NavSysCount].GetBoundary()[BOUNDARY_X_AXIS]}, {_NavSys[_NavSysCount].GetBoundary()[BOUNDARY_Y_AXIS]} is now being let alone.");
+                        _NavSys.RemoveAt(_NavSysCount--);
+                    }
                     else exitCode = true;
                 }
             }
