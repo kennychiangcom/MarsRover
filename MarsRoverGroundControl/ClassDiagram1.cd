@@ -1,23 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="MarsRover.MarsRoverGroundControl">
-    <Position X="3.5" Y="1" Width="2" />
+    <Position X="1.5" Y="1" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAQAAAAIAAAAIAAAAAKCAACAIAAAFAEAAAA=</HashCode>
       <FileName>MarsRoverGroundControl.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MarsRover.MarsRover">
-    <Position X="6" Y="3.5" Width="3.5" />
+    <Position X="7" Y="1" Width="3.5" />
     <TypeIdentifier>
       <HashCode>AAAAQAAAAQQgJAAAAAAAIAABIAAAAACAAAAAECEAAAA=</HashCode>
       <FileName>MarsRover.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="MarsRover.NavSys">
-    <Position X="6.75" Y="0.5" Width="2" />
+    <Position X="4.25" Y="1" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAADAAAAABAAAEAAAAAAAAEAAAAAAAAAAAABAAAAEA=</HashCode>
+      <HashCode>AAAATAAAAAQAAAEAAAABIAAEAAAAAAAAAAAAEAAAAEA=</HashCode>
       <FileName>NavSys.cs</FileName>
     </TypeIdentifier>
   </Class>

@@ -47,7 +47,7 @@ namespace MarsRover.Tests
         [Test]
         public void Test_Console_Multi_Rover_No_Path_Conflict()
         {
-            SetupUserResponses("5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM", "", "", "", "");
+            SetupUserResponses("50 50", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMRRM", "", "", "", "");
             var expectedPrompt = "5 1 E";
             var outputLines = RunMainAndGetConsoleOutput();
             Assert.That(outputLines[4], Is.EqualTo(expectedPrompt));
@@ -66,7 +66,7 @@ namespace MarsRover.Tests
         public void Test_Set_Plateau()
         {
             var _NavSys = new NavSys();
-            _NavSys.SetBoundry(5, 5);
+            _NavSys.SetBoundary(5, 5);
             int[] testboundary = _NavSys.GetBoundary();
             int[] expectedBoundary = new int[] { 0, 0, 5, 5 };
             Assert.That(testboundary, Is.EqualTo(expectedBoundary));
@@ -90,7 +90,7 @@ namespace MarsRover.Tests
         public void Test_Move_Rover_Within_Boundary(int xBT, int yBT, int xRT, int yRT, char hRT, string RoverMovements, int xRE, int yRE, char hRE)
         {
             var _NavSys = new NavSys();
-            _NavSys.SetBoundry(xBT, yBT);
+            _NavSys.SetBoundary(xBT, yBT);
             var _MarsRover = new MarsRover();
             _MarsRover.Deploy(xRT, yRT, hRT);
             _MarsRover.Myboundary = _NavSys.GetBoundary();
@@ -105,7 +105,7 @@ namespace MarsRover.Tests
         public void Test_Move_Rover_Out_Of_Boundary(int xBT, int yBT, int xRT, int yRT, char hRT, string RoverMovements, int xRE, int yRE, char hRE)
         {
             var _NavSys = new NavSys();
-            _NavSys.SetBoundry(xBT, yBT);
+            _NavSys.SetBoundary(xBT, yBT);
             var _MarsRover = new MarsRover();
             _MarsRover.Deploy(xRT, yRT, hRT);
             _MarsRover.Myboundary = _NavSys.GetBoundary();
