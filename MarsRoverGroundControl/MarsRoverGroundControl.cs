@@ -28,7 +28,7 @@ namespace MarsRover
             int[] plateauCoord = new int[NO_OF_AXIS];
             int[] roverAttitude = new int[NO_OF_AXIS];
 
-            MarsRoverGroundControl GC = new MarsRoverGroundControl();
+            MarsRoverGroundControl GC = new();
             List<MarsRover> _MarsRovers = new();
             int _MarsRoverCount = NO_ITEM;
             List<NavSys> _NavSys = new();
@@ -75,10 +75,10 @@ namespace MarsRover
                     {
                         _MarsRovers.Add(new MarsRover());
                         _MarsRoverCount++;
+                        _NavSys[_NavSysCount].UpdateVehLoc(-1, -1, roverAttitude[X_AXIS], roverAttitude[Y_AXIS]);
                     }
                     _MarsRovers[_MarsRoverCount].Deploy(roverAttitude[X_AXIS], roverAttitude[Y_AXIS], char.Parse(rCoord[HEADING]));
                     _MarsRovers[_MarsRoverCount].Myboundary = _NavSys[_NavSysCount].GetBoundary();
-                    //object[] testrover = _MarsRover[_MarsRoverCount].Detect();
                     Console.WriteLine($"Rover deployed at {_MarsRovers[_MarsRoverCount].Detect()[X_AXIS]}, {_MarsRovers[_MarsRoverCount].Detect()[Y_AXIS]}, facing {_MarsRovers[_MarsRoverCount].Detect()[HEADING]}");
                 }
                 else if (regRoverMovement.IsMatch(GC.CommandIn))
@@ -91,6 +91,7 @@ namespace MarsRover
                     if (_MarsRovers.Count > 0)
                     {
                         Console.WriteLine($"Mars Rover at {_MarsRovers[_MarsRoverCount].Detect()[X_AXIS]}, {_MarsRovers[_MarsRoverCount].Detect()[Y_AXIS]} is now being retreated.");
+                        _NavSys[_NavSysCount].UpdateVehLoc(Convert.ToInt32(_MarsRovers[_MarsRoverCount].Detect()[X_AXIS]), Convert.ToInt32(_MarsRovers[_MarsRoverCount].Detect()[Y_AXIS]), -1, -1);
                         _MarsRovers.RemoveAt(_MarsRoverCount--);
                     }
                     else if (_NavSys.Count > 0)

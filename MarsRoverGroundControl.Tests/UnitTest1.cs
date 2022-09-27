@@ -54,6 +54,15 @@ namespace MarsRover.Tests
         }
 
         [Test]
+        public void Test_Console_Multi_Rover_With_Path_Conflict()
+        {
+            SetupUserResponses("5 5", "1 2 N", "LMLMLMLMM", "3 3 E", "MMRMMRMMMMRMMMM", "", "", "", "");
+            var expectedPrompt = "1 2 N";
+            var outputLines = RunMainAndGetConsoleOutput();
+            Assert.That(outputLines[4], Is.EqualTo(expectedPrompt));
+        }
+
+        [Test]
         public void Test_Set_Plateau()
         {
             var _NavSys = new NavSys();
