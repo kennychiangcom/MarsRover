@@ -65,7 +65,7 @@ namespace MarsRover.Tests
         [Test]
         public void Test_Set_Plateau()
         {
-            var _NavSys = new NavSys();
+            var _NavSys = new NavigationSystem();
             _NavSys.SetBoundary(5, 5);
             int[] testboundary = _NavSys.GetBoundary();
             int[] expectedBoundary = new int[] { 0, 0, 5, 5 };
@@ -89,7 +89,7 @@ namespace MarsRover.Tests
         [TestCase(5, 5, 1, 2, 'N', "MMMRMMMM", 5, 5, 'E')]
         public void Test_Move_Rover_Within_Boundary(int xBT, int yBT, int xRT, int yRT, char hRT, string RoverMovements, int xRE, int yRE, char hRE)
         {
-            var _NavSys = new NavSys();
+            var _NavSys = new NavigationSystem();
             _NavSys.SetBoundary(xBT, yBT);
             var _MarsRover = new MarsRover();
             _MarsRover.Deploy(xRT, yRT, hRT);
@@ -104,7 +104,7 @@ namespace MarsRover.Tests
         [TestCase(5, 5, 1, 2, 'N', "MMMMRMMMMM", 5, 5, 'E')]
         public void Test_Move_Rover_Out_Of_Boundary(int xBT, int yBT, int xRT, int yRT, char hRT, string RoverMovements, int xRE, int yRE, char hRE)
         {
-            var _NavSys = new NavSys();
+            var _NavSys = new NavigationSystem();
             _NavSys.SetBoundary(xBT, yBT);
             var _MarsRover = new MarsRover();
             _MarsRover.Deploy(xRT, yRT, hRT);

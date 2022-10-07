@@ -9,7 +9,7 @@ namespace MarsRover
     {
         public static List<int[]>? VehicleLocation { get; set; }
     }
-    public class NavSys
+    public class NavigationSystem
     {
         private const int PLATEAU_ORIGIN_X = 0;
         private const int PLATEAU_ORIGIN_Y = 0;
@@ -18,7 +18,7 @@ namespace MarsRover
         private const int Y_AXIS = 1;
         private int[]? PlateauBoundry { get; set; }
 
-        public NavSys()
+        public NavigationSystem()
         {
             Globals.VehicleLocation ??= new();
         }
@@ -34,7 +34,7 @@ namespace MarsRover
             return PlateauBoundry;
         }
 
-        public static List<int[]>? UpdateVehLoc(int oldX, int oldY, int newX, int newY)
+        public static List<int[]>? UpdateVehicleLocation(int oldX, int oldY, int newX, int newY)
         {
             if (oldX < PLATEAU_ORIGIN_X || oldY < PLATEAU_ORIGIN_Y)   //new rover register
             {
@@ -80,7 +80,7 @@ namespace MarsRover
             return Globals.VehicleLocation;
         }
 
-        public bool CheckVehLoc(int vX, int vY)
+        public bool CheckVehicleLocation(int vX, int vY)
         {
             foreach (var vLoc in Globals.VehicleLocation!.Select((value, i) => new { i, value }))
             {

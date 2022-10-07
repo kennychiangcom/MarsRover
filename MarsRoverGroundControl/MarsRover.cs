@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MarsRover
 {
-    public class MarsRover : NavSys
+    public class MarsRover : NavigationSystem
     {
         private const int X_AXIS = 0;
         private const int Y_AXIS = 1;
@@ -69,30 +69,30 @@ namespace MarsRover
                         switch (Heading)
                         {
                             case 'N':
-                                if (Myboundary![BOUNDARY_Y_AXIS] >= Coordinates![Y_AXIS] + 1 && !CheckVehLoc(Coordinates[X_AXIS], Coordinates[Y_AXIS] + 1))
+                                if (Myboundary![BOUNDARY_Y_AXIS] >= Coordinates![Y_AXIS] + 1 && !CheckVehicleLocation(Coordinates[X_AXIS], Coordinates[Y_AXIS] + 1))
                                 {
-                                    UpdateVehLoc(Coordinates[X_AXIS], Coordinates[Y_AXIS], Coordinates[X_AXIS], Coordinates[Y_AXIS] + 1);
+                                    UpdateVehicleLocation(Coordinates[X_AXIS], Coordinates[Y_AXIS], Coordinates[X_AXIS], Coordinates[Y_AXIS] + 1);
                                     Coordinates[Y_AXIS]++;
                                 }
                                 break;
                             case 'E':
-                                if (Myboundary![BOUNDARY_X_AXIS] >= Coordinates![X_AXIS] + 1 && !CheckVehLoc(Coordinates[X_AXIS] + 1, Coordinates[Y_AXIS]))
+                                if (Myboundary![BOUNDARY_X_AXIS] >= Coordinates![X_AXIS] + 1 && !CheckVehicleLocation(Coordinates[X_AXIS] + 1, Coordinates[Y_AXIS]))
                                 {
-                                    UpdateVehLoc(Coordinates[X_AXIS], Coordinates[Y_AXIS], Coordinates[X_AXIS] + 1, Coordinates[Y_AXIS]);
+                                    UpdateVehicleLocation(Coordinates[X_AXIS], Coordinates[Y_AXIS], Coordinates[X_AXIS] + 1, Coordinates[Y_AXIS]);
                                     Coordinates[X_AXIS]++;
                                 }
                                 break;
                             case 'S':
-                                if (Myboundary![ORIGIN_Y_AXIS] <= Coordinates![Y_AXIS] - 1 && !CheckVehLoc(Coordinates[X_AXIS], Coordinates[Y_AXIS] - 1))
+                                if (Myboundary![ORIGIN_Y_AXIS] <= Coordinates![Y_AXIS] - 1 && !CheckVehicleLocation(Coordinates[X_AXIS], Coordinates[Y_AXIS] - 1))
                                 {
-                                    UpdateVehLoc(Coordinates[X_AXIS], Coordinates[Y_AXIS], Coordinates[X_AXIS], Coordinates[Y_AXIS] - 1);
+                                    UpdateVehicleLocation(Coordinates[X_AXIS], Coordinates[Y_AXIS], Coordinates[X_AXIS], Coordinates[Y_AXIS] - 1);
                                     Coordinates[Y_AXIS]--;
                                 }
                                 break;
                             case 'W':
-                                if (Myboundary![ORIGIN_X_AXIS] <= Coordinates![X_AXIS] - 1 && !CheckVehLoc(Coordinates[X_AXIS] - 1, Coordinates[Y_AXIS]))
+                                if (Myboundary![ORIGIN_X_AXIS] <= Coordinates![X_AXIS] - 1 && !CheckVehicleLocation(Coordinates[X_AXIS] - 1, Coordinates[Y_AXIS]))
                                 {
-                                    UpdateVehLoc(Coordinates[X_AXIS], Coordinates[Y_AXIS], Coordinates[X_AXIS] - 1, Coordinates[Y_AXIS]);
+                                    UpdateVehicleLocation(Coordinates[X_AXIS], Coordinates[Y_AXIS], Coordinates[X_AXIS] - 1, Coordinates[Y_AXIS]);
                                     Coordinates[X_AXIS]--;
                                 }
                                 break;

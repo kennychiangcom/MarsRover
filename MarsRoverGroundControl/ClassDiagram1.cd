@@ -3,7 +3,7 @@
   <Class Name="MarsRover.MarsRoverGroundControl">
     <Position X="1.5" Y="1" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAQAAAAIAAAAIAAAAAKCAACAIAAAFAEAAAA=</HashCode>
+      <HashCode>ACAAAAAAgAQAAAAIgQAgIAAAAAKCAACAIAAAFAEAQAA=</HashCode>
       <FileName>MarsRoverGroundControl.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -14,10 +14,10 @@
       <FileName>MarsRover.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="MarsRover.NavSys">
+  <Class Name="MarsRover.NavigationSystem">
     <Position X="4.25" Y="1" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAATAAAAAQAAAEAAAABIAAEAAAAAAAAAAAAEAAAAEA=</HashCode>
+      <HashCode>AAAATAAQAAQAAAEAAAAAIAAEAAAAAAAEAAAAEAAAAAA=</HashCode>
       <FileName>NavSys.cs</FileName>
     </TypeIdentifier>
   </Class>
