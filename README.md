@@ -1,4 +1,10 @@
 # MarsRover
+The management and control system for Melody Mars Rovers
+
+##About the system
+The Melody Mars Mission is proud of reaching the stage of exploring the Mars plateau, and is going to launch our fleets of Mars Rovers onto identified plateaus on Mars! In order to manage the exploration process, We developed MarsRover system for the purpose of manage and control the fleets.
+
+##Design
 This system is being constructed with 3 primary classes:
 
 1. Mars Rover Ground Control
@@ -10,7 +16,14 @@ This system is being constructed with 3 primary classes:
 
 The operation procedures will be carried out by the operation commander who batch the commands at the ground control on per-operation basis, in order to sending these commands to the Mars Rover. Up on the Mars, the rover will be deployed according to the commands received and then navigate to the pre-defined location and heading in the specified plateau range according to the plan, and send back its telemetry data back to ground control, that will subsequently be sequenced to data that meets the required format.
 
-Commands are described as below:
+##How did the system built
+The development process is following TDD practice, which is first build a set of classes and methods that provides the simplest data for basic testing requirements, then build some critical testing criteria following AAA practice and setup expected results. With these first few test codes a practice called Red/Green/Refactor (RGR) will be carried out to keep writing and testing codes and loop, until the system is reasonably complete.
+
+##How to launch
+Open a command prompt, locate and launch the executable file MarsRover.exe.
+
+##Usage
+Once the executable is launched, enter commands as described below:
 - When a coordination is being entered without a heading character, the command will be treated as defining a new plateau range, e.g.:
 ```
 5 5
@@ -25,4 +38,6 @@ LMLMLMLLM
 ```
 - When an empty command is entered, the current Mars Rover will be retreated, or, if all Mars Rovers within that plateau are retreated, the plateau will be let alone.
 
-The development process is following TDD practice, which is first build a set of classes and methods that provides the simplest data for basic testing requirements, then build some critical testing criteria following AAA practice and setup expected results. With these first few test codes a practice called Red/Green/Refactor (RGR) will be carried out to keep writing and testing codes and loop, until the system is reasonably complete.
+##Contributing
+Developed by Kenny Chiang with the assistance from Tech Returners.
+
