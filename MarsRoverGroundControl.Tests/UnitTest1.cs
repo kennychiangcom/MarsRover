@@ -8,10 +8,12 @@ namespace MarsRover.Tests
 {
     public class Tests
     {
+/*
         StringBuilder _ConsoleOutput;
         Mock<TextReader> _ConsoleInput;
-
+*/
         [SetUp]
+/*
         public void Setup()
         {
             _ConsoleOutput = new StringBuilder();
@@ -61,6 +63,7 @@ namespace MarsRover.Tests
             var outputLines = RunMainAndGetConsoleOutput();
             Assert.That(outputLines[4], Is.EqualTo(expectedPrompt));
         }
+*/
 
         [Test]
         public void Test_Set_Plateau()

@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Text.RegularExpressions;
 
-[assembly: InternalsVisibleTo("MarsRover.Tests")]
+//[assembly: InternalsVisibleTo("MarsRover.Tests")]
 namespace MarsRover
 {
     public class MarsRoverGroundControl
@@ -13,7 +13,6 @@ namespace MarsRover
         private const int X_AXIS = 0;
         private const int Y_AXIS = 1;
         private const int HEADING = 2;
-        private const int NO_OF_AXIS = 2;
         private const int BOUNDARY_X_AXIS = 2;
         private const int BOUNDARY_Y_AXIS = 3;
         private const int NO_ITEM = -1;
@@ -25,23 +24,23 @@ namespace MarsRover
         List<NavigationSystem> _NavSys = new();
         int _NavSysCount = NO_ITEM;
 
-        public int[] NewPlateau(int xx, int yy)
+        public int[] NewPlateau(int pX, int pY)
         {
             _NavSys.Add(new MarsRover());
             _NavSysCount++;
-            _NavSys[_NavSysCount].SetBoundary(xx, yy);
+            _NavSys[_NavSysCount].SetBoundary(pX, pY);
             return _NavSys[_NavSysCount].GetBoundary();
         }
 
         List<MarsRover> _MarsRovers = new();
         int _MarsRoverCount = NO_ITEM;
 
-        public object[] VehicleDeployOrLocate(int xx, int yy, string hh)
+        public object[] VehicleDeployOrLocate(int vX, int vY, string vH)
         {
             bool found = false;
             foreach (var rover in _MarsRovers.Select((value, i) => new { i, value }))
             {
-                if (Convert.ToInt32(rover.value.Detect()[X_AXIS]) == xx && Convert.ToInt32(rover.value.Detect()[Y_AXIS]) == yy)
+                if (Convert.ToInt32(rover.value.Detect()[X_AXIS]) == vX && Convert.ToInt32(rover.value.Detect()[Y_AXIS]) == vY)
                 {
                     MarsRover item = _MarsRovers[rover.i];
                     _MarsRovers.RemoveAt(rover.i);
@@ -54,9 +53,9 @@ namespace MarsRover
             {
                 _MarsRovers.Add(new MarsRover());
                 _MarsRoverCount++;
-                NavigationSystem.UpdateVehicleLocation(-1, -1, xx, yy);
+                NavigationSystem.UpdateVehicleLocation(-1, -1, vX, vY);
             }
-            _MarsRovers[_MarsRoverCount].Deploy(xx, yy, char.Parse(hh));
+            _MarsRovers[_MarsRoverCount].Deploy(vX, vY, char.Parse(vH));
             _MarsRovers[_MarsRoverCount].Myboundary = _NavSys[_NavSysCount].GetBoundary();
             return _MarsRovers[_MarsRoverCount].Detect();
         }
@@ -64,8 +63,6 @@ namespace MarsRover
         public static void Main(string[] args)
         {
             bool exitCode = false;
-            //int[] plateauCoord = new int[NO_OF_AXIS];
-            //int[] roverAttitude = new int[NO_OF_AXIS];
 
             MarsRoverGroundControl GC = new();
 
